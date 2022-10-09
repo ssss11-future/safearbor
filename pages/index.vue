@@ -175,7 +175,7 @@ export default {
       console.dir(this.provider);
       //NEEDS TO BE ON GOERLI - CHECK AND PROMPT
 
-      this.signer = this.provider.getSigner();
+      this.signer = await this.provider.getSigner();
       console.dir(this.signer);
       this.walletAddress = await this.signer.getAddress();
       console.dir(this.walletAddress);
