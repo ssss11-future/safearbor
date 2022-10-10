@@ -171,7 +171,7 @@ export default {
       console.log('connectWallet function'); 
       this.txInProgress = true;
 
-      this.provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      this.provider = new ethers.providers.Web3Provider(window.ethereum);
       console.dir(this.provider);
       console.dir(await this.provider.send("eth_requestAccounts", []));
       const signer = this.provider.getSigner();
