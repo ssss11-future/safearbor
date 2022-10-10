@@ -175,16 +175,13 @@ export default {
       await this.provider.send("eth_requestAccounts", [])
       console.dir(this.provider);
       //console.dir();
-      const signer = this.provider.getSigner();
-      console.log("Account:");
-      console.dir(await signer.getAddress());
       //NEEDS TO BE ON GOERLI - CHECK AND PROMPT
 
-      /*this.signer = await this.provider.getSigner();
+      this.signer = await this.provider.getSigner();
       console.dir(this.signer);
       this.walletAddress = await this.signer.getAddress();
       console.dir(this.walletAddress);
-*/
+
       this.dirtbirdsContract = new ethers.Contract(this.dirtbirds_address, dirtbirdsContractJSON.abi, this.signer);
       console.dir(this.dirtbirdsContract);
       this.isApproved = await this.dirtbirdsContract.isApprovedForAll(this.signer.getAddress(), this.freebirds_address)
