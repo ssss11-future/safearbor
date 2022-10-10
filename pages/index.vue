@@ -172,8 +172,9 @@ export default {
       this.txInProgress = true;
 
       this.provider = new ethers.providers.Web3Provider(window.ethereum);
+      await this.provider.send("eth_requestAccounts", [])
       console.dir(this.provider);
-      console.dir(await this.provider.send("eth_requestAccounts", []));
+      //console.dir();
       const signer = this.provider.getSigner();
       console.log("Account:");
       console.dir(await signer.getAddress());
