@@ -66,7 +66,7 @@
             You have {{ numTokens }} Dirtbirds and {{ numFBTokens}} Dirtbirds Revived!
           </p>
           <p class="lead" v-if="(numTokens > 29) || (numFBTokens > 29) ">
-            <i>***Maximum of 29 tokens per wrap or unwrap transaction.</i>
+            <i>***Maximum of 25 tokens per wrap or unwrap transaction.</i>
           </p>
         </div>
         <!-- if txInProgress -->
@@ -111,7 +111,7 @@
             You have {{ numTokens }} Dirtbirds and {{ numFBTokens}} Dirtbirds Revived!
           </p>
           <p class="lead" v-if="(numTokens > 29) || (numFBTokens > 29) ">
-            <i>***Maximum of 29 tokens per wrap or unwrap transaction.</i>
+            <i>***Maximum of 25 tokens per wrap or unwrap transaction.</i>
           </p>
         </div>
 
@@ -208,8 +208,8 @@ export default {
     async wrap(){
       this.txInProgress = true;
       var tokens = this.walletTokenIds;
-      if(this.walletTokenIds.length > 29){ //fails if more than 29 at a time
-        tokens = this.walletTokenIds.slice(0, 29);
+      if(this.walletTokenIds.length > 25){ //fails if more than 29 at a time
+        tokens = this.walletTokenIds.slice(0, 25);
       }
       console.log('Tokens are:');
       console.dir(tokens);
@@ -226,8 +226,8 @@ export default {
         await wrap.wait()
         console.log('wrap transaction completed:');
         console.dir(wrap);
-        this.fbWalletTokenIds = this.fbWalletTokenIds.push(this.walletTokenIds.slice(29));
-        this.walletTokenIds = this.walletTokenIds.slice(30);
+        this.fbWalletTokenIds = this.fbWalletTokenIds.push(this.walletTokenIds.slice(25));
+        this.walletTokenIds = this.walletTokenIds.slice(26);
         this.txInProgress = false;
       } catch(err){
         console.dir(err);
@@ -237,8 +237,8 @@ export default {
      async unwrap(){
       this.txInProgress = true;
       var tokens = this.fbWalletTokenIds;
-      if(this.fbWalletTokenIds.length > 29){ //fails if more than 29 at a time
-        tokens = this.fbWalletTokenIds.slice(0, 29);
+      if(this.fbWalletTokenIds.length > 25){ //fails if more than 29 at a time
+        tokens = this.fbWalletTokenIds.slice(0, 25);
       }
       console.log('tokens are:');
       console.dir(tokens);
@@ -255,8 +255,8 @@ export default {
         await unwrap.wait()
         console.log('unwrap transaction completed:');
         console.dir(unwrap);
-        this.walletTokenIds = this.walletTokenIds.push(this.fbWalletTokenIds.slice(29));
-        this.fbWalletTokenIds = this.fbWalletTokenIds.slice(30);
+        this.walletTokenIds = this.walletTokenIds.push(this.fbWalletTokenIds.slice(25));
+        this.fbWalletTokenIds = this.fbWalletTokenIds.slice(26);
         this.txInProgress = false;
       } catch(err){
         console.dir(err);
