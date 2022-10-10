@@ -65,8 +65,8 @@
           <p class="lead">
             You have {{ numTokens }} Dirtbirds and {{ numFBTokens}} Dirtbirds Revived!
           </p>
-          <p class="lead" v-if="(numTokens > 29) || (numFBTokens > 29) ">
-            <i>***Maximum of 25 tokens per wrap or unwrap transaction.</i>
+          <p class="lead" v-if="(numTokens > 5) || (numFBTokens > 5) ">
+            <i>***Maximum of 5 tokens per wrap or unwrap transaction.</i>
           </p>
         </div>
         <!-- if txInProgress -->
@@ -110,8 +110,8 @@
           <p class="lead">
             You have {{ numTokens }} Dirtbirds and {{ numFBTokens}} Dirtbirds Revived!
           </p>
-          <p class="lead" v-if="(numTokens > 29) || (numFBTokens > 29) ">
-            <i>***Maximum of 25 tokens per wrap or unwrap transaction.</i>
+          <p class="lead" v-if="(numTokens > 5) || (numFBTokens > 5) ">
+            <i>***Maximum of 5 tokens per wrap or unwrap transaction.</i>
           </p>
         </div>
 
@@ -141,7 +141,7 @@ export default {
   data() {
       return {
         dirtbirds_address: "0x79351db2014C28B6e44c77a7ca64f7401AC00D76",
-        freebirds_address: "0xd4E8ddC9271CAE85A14Ae288879161b97Cf58E95",
+        freebirds_address: "0xD5c7A7883cEeBF2c6ee0017954b1CdceE14A6b64",
         provider: false,
         signer: false,
         walletAddress: false,
@@ -208,8 +208,8 @@ export default {
     async wrap(){
       this.txInProgress = true;
       var tokens = this.walletTokenIds;
-      if(this.walletTokenIds.length > 25){ //fails if more than 29 at a time
-        tokens = this.walletTokenIds.slice(0, 25);
+      if(this.walletTokenIds.length > 5){ //fails if more than 29 at a time
+        tokens = this.walletTokenIds.slice(0, 5);
       }
       console.log('Tokens are:');
       console.dir(tokens);
@@ -226,8 +226,8 @@ export default {
         await wrap.wait()
         console.log('wrap transaction completed:');
         console.dir(wrap);
-        this.fbWalletTokenIds = this.fbWalletTokenIds.push(this.walletTokenIds.slice(25));
-        this.walletTokenIds = this.walletTokenIds.slice(26);
+        this.fbWalletTokenIds = this.fbWalletTokenIds.push(this.walletTokenIds.slice(5));
+        this.walletTokenIds = this.walletTokenIds.slice(6);
         this.txInProgress = false;
       } catch(err){
         console.dir(err);
@@ -237,8 +237,8 @@ export default {
      async unwrap(){
       this.txInProgress = true;
       var tokens = this.fbWalletTokenIds;
-      if(this.fbWalletTokenIds.length > 25){ //fails if more than 29 at a time
-        tokens = this.fbWalletTokenIds.slice(0, 25);
+      if(this.fbWalletTokenIds.length > 5){ //fails if more than 29 at a time
+        tokens = this.fbWalletTokenIds.slice(0, 5);
       }
       console.log('tokens are:');
       console.dir(tokens);
@@ -255,8 +255,8 @@ export default {
         await unwrap.wait()
         console.log('unwrap transaction completed:');
         console.dir(unwrap);
-        this.walletTokenIds = this.walletTokenIds.push(this.fbWalletTokenIds.slice(25));
-        this.fbWalletTokenIds = this.fbWalletTokenIds.slice(26);
+        this.walletTokenIds = this.walletTokenIds.push(this.fbWalletTokenIds.slice(5));
+        this.fbWalletTokenIds = this.fbWalletTokenIds.slice(6);
         this.txInProgress = false;
       } catch(err){
         console.dir(err);
