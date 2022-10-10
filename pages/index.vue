@@ -173,8 +173,8 @@ export default {
 
       this.provider = new ethers.providers.Web3Provider(window.ethereum, "goerli");
       console.dir(this.provider);
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
+      await this.provider.send("eth_requestAccounts", []);
+      const signer = this.provider.getSigner();
       console.log("Account:", await signer.getAddress());
       //NEEDS TO BE ON GOERLI - CHECK AND PROMPT
 
