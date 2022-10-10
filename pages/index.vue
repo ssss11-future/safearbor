@@ -100,9 +100,9 @@
             </b-col>
             <b-col>
               <p class="lead">
-                <b-button @click="mint(20)" disabled
+                <b-button @click="mint(100)" disabled
                   class="btn btn-lg btn-secondary fw-bold border-white bg-white info" >
-                  Mint 20 Dirtbirds 
+                  Mint 100 Dirtbirds 
                 </b-button>
               </p>
             </b-col>
@@ -209,7 +209,7 @@ export default {
       this.txInProgress = true;
       var tokens = this.walletTokenIds;
       if(this.walletTokenIds.length > 29){ //fails if more than 29 at a time
-        tokens = this.walletTokenIds.slice(29);
+        tokens = this.walletTokenIds.slice(0, 29);
       }
       console.log('Tokens are:');
       console.dir(tokens);
